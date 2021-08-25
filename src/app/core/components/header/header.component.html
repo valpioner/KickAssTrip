@@ -1,0 +1,36 @@
+<div class="header">
+  <mat-toolbar>
+    <span class="nav-tool-items">
+      <mat-icon (click)="toggleSidebar.emit()" class="hamburger">menu</mat-icon>
+    </span>
+
+    <span class="nav-tool-items">
+      <button mat-icon-button [matMenuTriggerFor]="langMenu">
+        <mat-icon svgIcon="flag-en"></mat-icon>
+      </button>
+      <mat-menu #langMenu="matMenu">
+        <button mat-menu-item>Settings</button>
+        <button mat-menu-item>Help</button>
+      </mat-menu>
+      <!-- <button mat-flat-button>+ Add new trip</button> -->
+      <button mat-icon-button [matMenuTriggerFor]="appMenu">
+        <mat-icon>more_vert</mat-icon>
+      </button>
+      <mat-menu #appMenu="matMenu">
+        <button mat-menu-item>Settings</button>
+        <button mat-menu-item>Help</button>
+      </mat-menu>
+      <!-- <button mat-flat-button>+ Add new trip</button> -->
+      <button mat-icon-button [matMenuTriggerFor]="appMenu">
+        <mat-icon>person</mat-icon>
+        <!-- <img className="avatar mr-1" src={user.avatar} alt={user.name}
+          title="You must have a Gravatar connected to your email to display an image" /> -->
+      </button>
+      <mat-menu #appMenu="matMenu">
+        content
+      </mat-menu>
+
+      <button mat-raised-button color="primary" routerLink="/login">Sign In</button>
+    </span>
+  </mat-toolbar>
+</div>

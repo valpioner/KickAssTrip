@@ -1,0 +1,141 @@
+//source: https://www.positronx.io/create-angular-material-8-custom-theme/
+//https://material.angular.io/guide/theming
+
+@import '~@angular/material/theming';
+@include mat-core();
+
+// Light theme
+//$my-custom-theme: mat-light-theme($my-custom-primary, $my-custom-accent, $my-custom-warn);
+
+$green-alt-palette: (
+  50: #e4f7f0,
+  100: #bcead9,
+  200: #8fdcc0,
+  300: #62cea6,
+  400: #40c493,
+  500: #1eb980,
+  //#1BB89C
+    600: #1ab278,
+  700: #16aa6d,
+  800: #12a263,
+  900: #0a9350,
+  A100: #c1ffde,
+  A200: #8effc3,
+  A400: #5bffa7,
+  A700: #41ff9a,
+  contrast: (
+    50: #000000,
+    100: #000000,
+    200: #000000,
+    300: #000000,
+    400: #000000,
+    500: #000000,
+    600: #ffffff,
+    700: #ffffff,
+    800: #ffffff,
+    900: #ffffff,
+    A100: #000000,
+    A200: #000000,
+    A400: #000000,
+    A700: #000000
+  )
+);
+
+// $green-palette: (
+//   50: #e4f6f3,
+//   100: #bbeae1,
+//   200: #8ddcce,
+//   300: #5fcdba,
+//   400: #3dc3ab,
+//   500: #1bb89c,
+//   600: #18b194,
+//   700: #14a88a,
+//   800: #10a080,
+//   900: #08916e,
+//   A100: #beffed,
+//   A200: #8bffde,
+//   A400: #58ffd0,
+//   A700: #3fffc8,
+//   contrast: (
+//     50: #000000,
+//     100: #000000,
+//     200: #000000,
+//     300: #000000,
+//     400: #000000,
+//     500: #ffffff,
+//     600: #ffffff,
+//     700: #ffffff,
+//     800: #ffffff,
+//     900: #ffffff,
+//     A100: #000000,
+//     A200: #000000,
+//     A400: #000000,
+//     A700: #000000
+//   )
+// );
+
+$orange-palette: (
+  50: #ffece0,
+  100: #ffd0b3,
+  200: #ffb180,
+  300: #ff924d,
+  400: #ff7a26,
+  500: #ff6300,
+  600: #ff5b00,
+  700: #ff5100,
+  800: #ff4700,
+  900: #ff3500,
+  A100: #ffffff,
+  A200: #fff4f2,
+  A400: #ffc9bf,
+  A700: #ffb3a6,
+  contrast: (
+    50: #000000,
+    100: #000000,
+    200: #000000,
+    300: #000000,
+    400: #000000,
+    500: #000000,
+    600: #000000,
+    700: #ffffff,
+    800: #ffffff,
+    900: #ffffff,
+    A100: #000000,
+    A200: #000000,
+    A400: #000000,
+    A700: #000000
+  )
+);
+
+$light-primary: mat-palette($mat-indigo);
+$light-accent: mat-palette($mat-pink, A200, A100, A400);
+$light-warn: mat-palette($mat-red);
+$light-theme: mat-light-theme($light-primary, $light-accent, $light-warn);
+@include angular-material-theme($light-theme);
+
+// Alternate Angular Material Theme
+.dark-theme {
+  color: $light-primary-text;
+  $dark-primary: mat-palette($green-alt-palette, 500, A100, A400);
+  $dark-accent: mat-palette($orange-palette, 400, A100, A400);
+  $dark-warn: mat-palette($mat-red);
+  $background-color: /*map_get($mat-blue-grey, 50)*/ #1f1f1f;
+  $dark-theme: mat-dark-theme($dark-primary, $dark-accent, $dark-warn);
+
+  // Insert custom background color
+  $background: map-get($dark-theme, background);
+  $background: map_merge(
+    $background,
+    (
+      background: $background-color
+    )
+  );
+  $dark-theme: map_merge(
+    $dark-theme,
+    (
+      background: $background
+    )
+  );
+
+  @include angular-material-theme($dark-theme);
+}

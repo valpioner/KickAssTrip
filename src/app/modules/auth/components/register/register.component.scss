@@ -1,0 +1,56 @@
+.register {
+  display: flex;
+  height: 100%;
+
+  &-card {
+    width: 300px;
+    margin:  20% auto auto;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+
+    &__logo {
+      font-size: 80px;
+      height: 80px;
+      width: 80px;
+      align-self: center;
+    }
+
+    .mat-card-header {
+      justify-content: center;
+      margin-top: 10px;
+    }
+
+    .register-form {
+      display: flex;
+      flex-direction: column;
+
+      span[mat-icon-button] {
+        cursor: pointer;
+        &>mat-icon {
+          font-size: medium;
+        }
+      }
+
+      mat-card-actions {
+        margin: 10px 0 0 0;
+      }
+
+      span {
+        align-self: center;
+        font-size: 12px;
+        line-height: 20px;
+
+        a {
+          margin-left: 5px;
+        }
+      }
+    }
+
+    button {
+      width: 100%
+    }
+  }
+
+
+}
