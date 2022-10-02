@@ -19,6 +19,8 @@ let map: g.Map;
 export class MapComponent implements OnInit {
   // @Input() center = new g.LatLng(lat, lng);
 
+  private str = '';
+
   @ViewChild('gmap', { static: true }) gmapElement: any;
 
   mapStyles: g.MapTypeStyle[] = [
@@ -170,12 +172,15 @@ export class MapComponent implements OnInit {
     },
   };
 
+  private testPolyline: g.Polyline = new g.Polyline(this.polyGroundOptions);
+
   constructor() {}
 
   ngOnInit() {
     this.createMap();
     this.addFlights(mockFlights);
     this.addGrounds(mockGrounds);
+    this.addTestGrounds([]);
   }
 
   private createMap() {
@@ -185,6 +190,7 @@ export class MapComponent implements OnInit {
     map = new g.Map(this.gmapElement.nativeElement, this.mapOptions);
     map.mapTypes.set(this.MY_MAPTYPE_ID, styledMap);
     map.setMapTypeId(this.MY_MAPTYPE_ID);
+    map.addListener('click', this.addLatLng.bind(this));
   }
 
   private addFlights(flights: any) {
@@ -209,5 +215,29 @@ export class MapComponent implements OnInit {
       polyline.setPath(ground);
       polyline.setMap(map);
     });
+  }
+
+  private addTestGrounds(grounds: any) {
+    // grounds.forEach((ground: any) => {
+    // this.testPolyline = new g.Polyline(this.polyGroundOptions);
+    // this.testPolyline.setPath(ground);
+    this.testPolyline.setMap(map);
+    // });
+  }
+
+  private addLatLng(event: any) {
+    var path = this.testPolyline?.getPath();
+    path?.push(event.latLng);
+    // console.log('event is:', event);
+
+    this.str +=
+      'new google.maps.LatLng(' +
+      event.latLng.lat() +
+      ', ' +
+      event.latLng.lng() +
+      '), ';
+    console.log(this.str);
+
+    // console.log('Final path is: ', path);
   }
 }

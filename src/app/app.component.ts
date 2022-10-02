@@ -5,18 +5,18 @@ import { DomSanitizer } from '@angular/platform-browser';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
   constructor(
     private matIconRegistry: MatIconRegistry,
     private domSanitizer: DomSanitizer
   ) {
-    this.matIconRegistry.addSvgIcon(
-      'flag-en',
-      this.domSanitizer.bypassSecurityTrustResourceUrl(
-        'assets/icons/flag-en.svg'
-      )
-    );
+    // this.matIconRegistry.addSvgIcon(
+    //   'flag-en',
+    //   this.domSanitizer.bypassSecurityTrustResourceUrl(
+    //     'assets/icons/flag-en.svg'
+    //   )
+    // );
   }
 }
