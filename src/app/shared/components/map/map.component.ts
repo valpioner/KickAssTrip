@@ -1,137 +1,116 @@
-import { Component, OnInit, ViewChild, Input } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  ViewChild,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 
 import g = google.maps;
 import { mockFlights, mockGrounds } from '../../mocks/mapMocks';
-
 
 let map: g.Map;
 
 @Component({
   selector: 'app-map',
   templateUrl: './map.component.html',
-  styleUrls: ['./map.component.scss']
+  styleUrls: ['./map.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MapComponent implements OnInit {
   // @Input() center = new g.LatLng(lat, lng);
 
-  @ViewChild('gmap', {static: true}) gmapElement: any;
-
+  @ViewChild('gmap', { static: true }) gmapElement: any;
 
   mapStyles: g.MapTypeStyle[] = [
     {
-      "featureType": "water",
-      "elementType": "geometry.fill",
-      "stylers": [
-        { "color": "#282828" }]
+      featureType: 'water',
+      elementType: 'geometry.fill',
+      stylers: [{ color: '#282828' }],
     },
     {
-      "featureType": "landscape",
-      "stylers": [
-        { "color": "#393939" }]
+      featureType: 'landscape',
+      stylers: [{ color: '#393939' }],
     },
     {
-      "featureType": "road",
-      "stylers": [
-        { "visibility": "simplified" },
-        { "lightness": -32 },
+      featureType: 'road',
+      stylers: [
+        { visibility: 'simplified' },
+        { lightness: -32 },
         // { "opacity": 0.2 },
-        { "saturation": -9 }]
+        { saturation: -9 },
+      ],
     },
     {
-      "featureType": "road.arterial",
-      "stylers": [
-        { "visibility": "off" }
-      ]
+      featureType: 'road.arterial',
+      stylers: [{ visibility: 'off' }],
     },
     {
-      "featureType": "road.highway",
-      "elementType": "geometry.fill",
-      "stylers": [
-        { "saturation": -80 },
-        { "lightness": -30 },
-        { "visibility": "simplified" },
-        { "weight": 0.5 }
-      ]
+      featureType: 'road.highway',
+      elementType: 'geometry.fill',
+      stylers: [
+        { saturation: -80 },
+        { lightness: -30 },
+        { visibility: 'simplified' },
+        { weight: 0.5 },
+      ],
     },
     {
-      "featureType": "road.highway",
-      "elementType": "geometry.stroke",
-      "stylers": [
-        { "visibility": "simplified" }
-      ]
+      featureType: 'road.highway',
+      elementType: 'geometry.stroke',
+      stylers: [{ visibility: 'simplified' }],
     },
     {
-      "featureType": "road.highway",
-      "elementType": "labels",
-      "stylers": [
-        { "visibility": "off" }
-      ]
+      featureType: 'road.highway',
+      elementType: 'labels',
+      stylers: [{ visibility: 'off' }],
     },
     {
-      "featureType": "road.local",
-      "stylers": [
-        { "visibility": "off" }
-      ]
+      featureType: 'road.local',
+      stylers: [{ visibility: 'off' }],
     },
     {
-      "featureType": "transit",
-      "elementType": "geometry",
-      "stylers": [
-        { "color": "#000000" },
-        { "lightness": 19 }
-      ]
+      featureType: 'transit',
+      elementType: 'geometry',
+      stylers: [{ color: '#000000' }, { lightness: 19 }],
     },
     {
-      "featureType": "poi",
-      "stylers": [
-        { "visibility": "off" }]
+      featureType: 'poi',
+      stylers: [{ visibility: 'off' }],
     },
     {
-      "featureType": "all",
-      "elementType": "labels.text.stroke",
-      "stylers": [
-        { "visibility": "off" },
-        { "color": "#000000" },
-        { "lightness": 10 }]
+      featureType: 'all',
+      elementType: 'labels.text.stroke',
+      stylers: [{ visibility: 'off' }, { color: '#000000' }, { lightness: 10 }],
     },
     {
-      "featureType": "all",
-      "elementType": "labels.text.fill",
-      "stylers": [
-        { "visibility": "on" },
-        { "saturation": -100 },
-        { "lightness": 45 }]
+      featureType: 'all',
+      elementType: 'labels.text.fill',
+      stylers: [{ visibility: 'on' }, { saturation: -100 }, { lightness: 45 }],
     },
     {
-      "featureType": "all",
-      "elementType": "labels.icon",
-      "stylers": [
-        { "visibility": "off" }]
+      featureType: 'all',
+      elementType: 'labels.icon',
+      stylers: [{ visibility: 'off' }],
     },
     {
-      "featureType": "transit",
-      "elementType": "geometry",
-      "stylers": [
-        { "color": "#000000" },
-        { "lightness": 19 }]
+      featureType: 'transit',
+      elementType: 'geometry',
+      stylers: [{ color: '#000000' }, { lightness: 19 }],
     },
     {
-      "featureType": "administrative",
-      "elementType": "geometry.fill",
-      "stylers": [
-        { "visibility": "off" }]
+      featureType: 'administrative',
+      elementType: 'geometry.fill',
+      stylers: [{ visibility: 'off' }],
     },
     {
-      "featureType": "administrative.province",
-      "stylers": [
-        { "lightness": -50 }]
+      featureType: 'administrative.province',
+      stylers: [{ lightness: -50 }],
     },
     {
-      "featureType": "administrative",
-      "elementType": "labels",
-      "stylers": [
-        { "visibility": "simplified" }]
-    }
+      featureType: 'administrative',
+      elementType: 'labels',
+      stylers: [{ visibility: 'simplified' }],
+    },
   ];
 
   private MY_MAPTYPE_ID = 'kickasstrip_style';
@@ -139,7 +118,7 @@ export class MapComponent implements OnInit {
   private lineSymbol = {
     path: 'M 0,-1 0,1',
     strokeOpacity: 1,
-    scale: 1
+    scale: 1,
   };
 
   private planeSymbol = {
@@ -149,30 +128,33 @@ export class MapComponent implements OnInit {
     scale: 0.02,
     strokeOpacity: 0.6,
     strokeWeight: 1,
-    anchor: new g.Point(300, 300)
+    anchor: new g.Point(300, 300),
   };
 
   private polyFlightsOptions = {
     geodesic: true,
-    strokeColor: '#5A8DBE',//'#58BB7A',
+    strokeColor: '#5A8DBE', //'#58BB7A',
     strokeOpacity: 0,
     strokeWeight: 1,
     map: map,
-    icons: [{
-      icon: this.lineSymbol,
-      offset: '0',
-      repeat: '5px'
-    }, {
-      icon: this.planeSymbol,
-      offset: '50%',
-    }]
+    icons: [
+      {
+        icon: this.lineSymbol,
+        offset: '0',
+        repeat: '5px',
+      },
+      {
+        icon: this.planeSymbol,
+        offset: '50%',
+      },
+    ],
   };
 
   private polyGroundOptions = {
     strokeColor: '#FF6300',
     strokeOpacity: 1.0,
     strokeWeight: 2,
-    map: map
+    map: map,
   };
 
   private mapOptions: g.MapOptions = {
@@ -184,20 +166,22 @@ export class MapComponent implements OnInit {
     maxZoom: 12,
     tilt: 45,
     mapTypeControlOptions: {
-      mapTypeIds: [google.maps.MapTypeId.TERRAIN, this.MY_MAPTYPE_ID]
-    }
+      mapTypeIds: [google.maps.MapTypeId.TERRAIN, this.MY_MAPTYPE_ID],
+    },
   };
 
-  constructor() { }
+  constructor() {}
 
   ngOnInit() {
     this.createMap();
     this.addFlights(mockFlights);
-    this.addGrounds(mockGrounds)
+    this.addGrounds(mockGrounds);
   }
 
   private createMap() {
-    const styledMap = new g.StyledMapType(this.mapStyles, { name: 'KickAssTrip' });
+    const styledMap = new g.StyledMapType(this.mapStyles, {
+      name: 'KickAssTrip',
+    });
     map = new g.Map(this.gmapElement.nativeElement, this.mapOptions);
     map.mapTypes.set(this.MY_MAPTYPE_ID, styledMap);
     map.setMapTypeId(this.MY_MAPTYPE_ID);
@@ -207,7 +191,10 @@ export class MapComponent implements OnInit {
     for (const flightDetails of flights) {
       flightDetails.reduce((from: any, to: any) => {
         const path = [];
-        path.push(new g.LatLng(from.lat, from.lng), new g.LatLng(to.lat, to.lng));
+        path.push(
+          new g.LatLng(from.lat, from.lng),
+          new g.LatLng(to.lat, to.lng)
+        );
         const polyline = new g.Polyline(this.polyFlightsOptions);
         polyline.setPath(path);
         polyline.setMap(map);
