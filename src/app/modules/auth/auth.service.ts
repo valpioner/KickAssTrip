@@ -12,8 +12,16 @@ export class AuthService {
   public currentUser: Observable<User | null>;
 
   constructor(private http: HttpClient) {
+    let tryParseUserFromLocalStorage = () => {
+      try {
+        return JSON.parse(localStorage.getItem('currentUser') || '');
+      } catch {
+        return null;
+      }
+    };
+
     this.currentUserSubject = new BehaviorSubject<User | null>(
-      JSON.parse(localStorage.getItem('currentUser') || '')
+      tryParseUserFromLocalStorage()
     );
     this.currentUser = this.currentUserSubject.asObservable();
   }
@@ -30,7 +38,7 @@ export class AuthService {
     return this.http
       .post<any>(`${environment.apiUrl}/auth/login`, { email, password })
       .pipe(
-        map(user => {
+        map((user) => {
           // login successful if there's a jwt token in the response
           if (user && user.token) {
             // store user details and jwt token credentials in local storage to keep user logged in between page refreshes

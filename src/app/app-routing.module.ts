@@ -1,8 +1,4 @@
-import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { RegisterComponent } from './modules/auth/components/register/register.component';
-import { LoginComponent } from './modules/auth/components/login/login.component';
-import { HomeComponent } from './home/home.component';
 import { AuthGuard } from './_helpers';
 import { AdminComponent } from './modules/admin/components/admin/admin.component';
 import { Role } from './_models/role';
@@ -10,7 +6,9 @@ import { Role } from './_models/role';
 const routes: Routes = [
   {
     path: '',
-    component: HomeComponent
+    loadChildren: () =>
+      import('./modules/home/home.module').then((m) => m.HomeModule),
+    // component: HomeComponent
     // canActivate: [AuthGuard]
     // redirectTo: '/events',
     // pathMatch: 'full'
@@ -19,15 +17,12 @@ const routes: Routes = [
     path: 'admin',
     component: AdminComponent,
     canActivate: [AuthGuard],
-    data: { roles: [Role.Admin] }
+    data: { roles: [Role.Admin] },
   },
   {
-    path: 'login',
-    component: LoginComponent
-  },
-  {
-    path: 'register',
-    component: RegisterComponent
+    path: 'auth',
+    loadChildren: () =>
+      import('./modules/auth/auth.module').then((m) => m.AuthModule),
   },
   //   { path: '', component: AppComponent, children: [
   //     { path: '',
@@ -45,7 +40,7 @@ const routes: Routes = [
   // { path: 'hero/:id',      component: HeroDetailComponent },
 
   // otherwise redirect to home
-  { path: '**', redirectTo: '' }
+  { path: '**', redirectTo: '' },
 ];
 
 // @NgModule({

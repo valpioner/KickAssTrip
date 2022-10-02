@@ -1,13 +1,18 @@
-import { Component, OnInit } from '@angular/core';
-import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
-import { AuthService } from '../../auth.service';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import {
+  UntypedFormBuilder,
+  UntypedFormGroup,
+  Validators,
+} from '@angular/forms';
+import { AuthService } from '../auth.service';
 import { first } from 'rxjs/operators';
 import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LoginComponent implements OnInit {
   form: UntypedFormGroup;
@@ -26,18 +31,16 @@ export class LoginComponent implements OnInit {
     if (this.authService.currentUserValue) {
       this.router.navigate(['/']);
     }
-    
+
     this.form = this.fb.group({
       email: ['', Validators.compose([Validators.required, Validators.email])],
-      password: ['', Validators.required]
+      password: ['', Validators.required],
     });
 
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
   }
 
-  ngOnInit() {
-
-  }
+  ngOnInit() {}
 
   login() {
     if (this.form.invalid) {
@@ -50,11 +53,11 @@ export class LoginComponent implements OnInit {
       .login(this.form.value.email, this.form.value.password)
       .pipe(first())
       .subscribe(
-        data => {
+        (data) => {
           console.log('data: ', data);
           this.router.navigate([this.returnUrl]);
         },
-        error => {
+        (error) => {
           console.log('error: ', error);
           this.error = error;
           // this.alertService.error(error);

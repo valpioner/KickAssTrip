@@ -6,7 +6,7 @@ import {
 } from '@angular/core';
 
 import g = google.maps;
-import { mockFlights, mockGrounds } from '../../mocks/mapMocks';
+import { mockFlights, mockGrounds } from './mapMocks';
 
 let map: g.Map;
 
@@ -192,6 +192,7 @@ export class MapComponent implements OnInit {
     const styledMap = new g.StyledMapType(this.mapStyles, {
       name: 'KickAssTrip',
     });
+
     map = new g.Map(this.gmapElement.nativeElement, this.mapOptions);
     map.mapTypes.set(this.MY_MAPTYPE_ID, styledMap);
     map.setMapTypeId(this.MY_MAPTYPE_ID);
