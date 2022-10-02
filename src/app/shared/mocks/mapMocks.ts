@@ -1,3 +1,5 @@
+import { Trip } from '@app/_models/trip';
+
 export const mockFlights = [
   [
     { lat: 50.448853, lng: 30.513346, name: 'Kyiv' },
