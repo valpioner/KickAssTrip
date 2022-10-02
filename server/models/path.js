@@ -33,4 +33,4 @@ const pathSchema = mongoose.Schema({
   },
 });
 
-module.exports = mongoose.model("path", pathSchema, "paths");
+module.exports = mongoose.model("Path", pathSchema, "paths");

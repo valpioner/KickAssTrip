@@ -1,6 +1,5 @@
 <mat-sidenav-container>
-
-  <mat-sidenav class="sidenav" #sidenav [mode]="isBiggerScreen() ? 'over' : 'side'" [(opened)]="opened"
+  <!-- <mat-sidenav class="sidenav" #sidenav [mode]="isBiggerScreen() ? 'over' : 'side'" [(opened)]="opened"
     [fixedInViewport]="false" [fixedTopGap]>
     <div class="sidenav__header">
       <div class="sidenav__header-logo">
@@ -30,12 +29,11 @@
         </a>
       </mat-nav-list>
     </div>
-  </mat-sidenav>
+  </mat-sidenav> -->
 
   <mat-sidenav-content class="content">
     <app-header (toggleSidebar)="sidenav.toggle()"></app-header>
 
-    <app-map style="width:100%;height:100%"></app-map>
+    <app-map style="width: 100%; height: 100%"></app-map>
   </mat-sidenav-content>
-
 </mat-sidenav-container>

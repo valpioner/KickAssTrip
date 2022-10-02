@@ -12,6 +12,31 @@ const tripSchema = mongoose.Schema({
   description: {
     type: String,
   },
+  paths: [
+    {
+      name: {
+        type: String,
+      },
+      type: {
+        type: String,
+        enum: ["ground", "air", "water"],
+        default: "ground",
+        required: true,
+      },
+      waypoints: [
+        {
+          lat: {
+            type: Number,
+            required: true,
+          },
+          lng: {
+            type: Number,
+            required: true,
+          },
+        },
+      ],
+    },
+  ],
   startDate: {
     type: Date,
   },
@@ -20,4 +45,4 @@ const tripSchema = mongoose.Schema({
   },
 });
 
-module.exports = mongoose.model("trip", tripSchema, "trips");
+module.exports = mongoose.model("Trip", tripSchema, "trips");

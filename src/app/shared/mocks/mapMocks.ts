@@ -57,6 +57,7 @@ export const mockFlights = [
 ];
 
 export const mockGrounds = [
+  // alaska
   [
     new google.maps.LatLng(61.216511520571565, -149.86681938171387),
     new google.maps.LatLng(61.08676567816336, -149.83351707458496),
@@ -79,7 +80,7 @@ export const mockGrounds = [
     new google.maps.LatLng(60.18659839709946, -149.37286376953125),
     new google.maps.LatLng(60.12055956793536, -149.4408416748047),
   ],
-
+  // USA west coast
   [
     new google.maps.LatLng(37.77491261707112, -122.41937756538391),
     new google.maps.LatLng(37.80218877920469, -122.27920532226562),
@@ -96,7 +97,7 @@ export const mockGrounds = [
     new google.maps.LatLng(35.25795517382968, -112.15118408203125),
     new google.maps.LatLng(36.05735655797715, -112.10548996925354),
   ],
-
+  // USA east coast
   [
     new google.maps.LatLng(43.089074546619486, -79.0631103515625),
     new google.maps.LatLng(43.07427992333155, -78.99109840393066),
@@ -116,10 +117,12 @@ export const mockGrounds = [
     new google.maps.LatLng(35.906432183183306, -75.59829711914062),
     new google.maps.LatLng(35.889189151336524, -75.66215515136719),
   ],
-
+  // kickasstrip to bkk
   [
+    // lviv - krakow
     new google.maps.LatLng(50.064191736659104, 19.9676513671875),
     new google.maps.LatLng(50.032445247495104, 22.0220947265625),
+    //
     new google.maps.LatLng(49.83266792683253, 24.0435791015625),
     new google.maps.LatLng(49.74844341339525, 24.561309814453125),
     new google.maps.LatLng(49.80076850316847, 24.896392822265625),
@@ -377,7 +380,7 @@ export const mockGrounds = [
     new google.maps.LatLng(13.95405951413341, 100.62103271484375),
     new google.maps.LatLng(13.775400202363377, 100.54412841796875),
   ],
-
+  // kickasstrip from bkk to vietnam
   [
     new google.maps.LatLng(12.254127737657381, 109.19036865234375),
     new google.maps.LatLng(12.264863532756566, 108.84429931640625),
@@ -555,7 +558,6 @@ export const mockGrounds = [
     new google.maps.LatLng(5.352154053118371, 100.3106689453125),
     new google.maps.LatLng(5.419148251825298, 100.3106689453125),
   ],
-
   [
     new google.maps.LatLng(49.568144853940545, 34.1015625),
     new google.maps.LatLng(49.44714672102774, 33.96903991699219),
@@ -602,6 +604,9 @@ export const mockGrounds = [
     new google.maps.LatLng(52.05924589011585, 21.522216796875),
     new google.maps.LatLng(51.261914853084534, 22.6043701171875),
     new google.maps.LatLng(50.87184477102432, 23.214111328125),
+  ],
+  // trip to Bulgary
+  [
     new google.maps.LatLng(49.85215166776998, 23.983154296875),
     new google.maps.LatLng(49.396675075193976, 24.5819091796875),
     new google.maps.LatLng(48.98742700601184, 24.7247314453125),

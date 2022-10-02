@@ -106,7 +106,12 @@ export class MapComponent implements OnInit {
     },
     {
       featureType: 'administrative.province',
-      stylers: [{ lightness: -50 }],
+      stylers: [{ lightness: 0 }],
+    },
+    {
+      featureType: 'administrative.country',
+      elementType: 'geometry.stroke',
+      stylers: [{ lightness: 10 }],
     },
     {
       featureType: 'administrative',
@@ -177,23 +182,26 @@ export class MapComponent implements OnInit {
   constructor() {}
 
   ngOnInit() {
-    this.createMap();
-    this.addFlights(mockFlights);
-    this.addGrounds(mockGrounds);
-    this.addTestGrounds([]);
+    this._createMap();
+
+    this._addMockFlights(mockFlights);
+    this._addMockGrounds(mockGrounds);
   }
 
-  private createMap() {
+  private _createMap() {
     const styledMap = new g.StyledMapType(this.mapStyles, {
       name: 'KickAssTrip',
     });
     map = new g.Map(this.gmapElement.nativeElement, this.mapOptions);
     map.mapTypes.set(this.MY_MAPTYPE_ID, styledMap);
     map.setMapTypeId(this.MY_MAPTYPE_ID);
-    map.addListener('click', this.addLatLng.bind(this));
+
+    // this will log and drow test polyline on click
+    this.testPolyline.setMap(map);
+    map.addListener('click', this._updateTestPolyline.bind(this));
   }
 
-  private addFlights(flights: any) {
+  private _addMockFlights(flights: any) {
     for (const flightDetails of flights) {
       flightDetails.reduce((from: any, to: any) => {
         const path = [];
@@ -209,7 +217,7 @@ export class MapComponent implements OnInit {
     }
   }
 
-  private addGrounds(grounds: any) {
+  private _addMockGrounds(grounds: any) {
     grounds.forEach((ground: any) => {
       const polyline = new g.Polyline(this.polyGroundOptions);
       polyline.setPath(ground);
@@ -217,15 +225,7 @@ export class MapComponent implements OnInit {
     });
   }
 
-  private addTestGrounds(grounds: any) {
-    // grounds.forEach((ground: any) => {
-    // this.testPolyline = new g.Polyline(this.polyGroundOptions);
-    // this.testPolyline.setPath(ground);
-    this.testPolyline.setMap(map);
-    // });
-  }
-
-  private addLatLng(event: any) {
+  private _updateTestPolyline(event: any) {
     var path = this.testPolyline?.getPath();
     path?.push(event.latLng);
     // console.log('event is:', event);
