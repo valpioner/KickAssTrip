@@ -24,100 +24,100 @@ export class MapComponent implements OnInit {
   @ViewChild('gmap', { static: true }) gmapElement: any;
 
   mapStyles: g.MapTypeStyle[] = [
-    {
-      featureType: 'water',
-      elementType: 'geometry.fill',
-      stylers: [{ color: '#282828' }],
-    },
-    {
-      featureType: 'landscape',
-      stylers: [{ color: '#393939' }],
-    },
-    {
-      featureType: 'road',
-      stylers: [
-        { visibility: 'simplified' },
-        { lightness: -32 },
-        // { "opacity": 0.2 },
-        { saturation: -9 },
-      ],
-    },
-    {
-      featureType: 'road.arterial',
-      stylers: [{ visibility: 'off' }],
-    },
-    {
-      featureType: 'road.highway',
-      elementType: 'geometry.fill',
-      stylers: [
-        { saturation: -80 },
-        { lightness: -30 },
-        { visibility: 'simplified' },
-        { weight: 0.5 },
-      ],
-    },
-    {
-      featureType: 'road.highway',
-      elementType: 'geometry.stroke',
-      stylers: [{ visibility: 'simplified' }],
-    },
-    {
-      featureType: 'road.highway',
-      elementType: 'labels',
-      stylers: [{ visibility: 'off' }],
-    },
-    {
-      featureType: 'road.local',
-      stylers: [{ visibility: 'off' }],
-    },
-    {
-      featureType: 'transit',
-      elementType: 'geometry',
-      stylers: [{ color: '#000000' }, { lightness: 19 }],
-    },
-    {
-      featureType: 'poi',
-      stylers: [{ visibility: 'off' }],
-    },
-    {
-      featureType: 'all',
-      elementType: 'labels.text.stroke',
-      stylers: [{ visibility: 'off' }, { color: '#000000' }, { lightness: 10 }],
-    },
-    {
-      featureType: 'all',
-      elementType: 'labels.text.fill',
-      stylers: [{ visibility: 'on' }, { saturation: -100 }, { lightness: 45 }],
-    },
-    {
-      featureType: 'all',
-      elementType: 'labels.icon',
-      stylers: [{ visibility: 'off' }],
-    },
-    {
-      featureType: 'transit',
-      elementType: 'geometry',
-      stylers: [{ color: '#000000' }, { lightness: 19 }],
-    },
-    {
-      featureType: 'administrative',
-      elementType: 'geometry.fill',
-      stylers: [{ visibility: 'off' }],
-    },
-    {
-      featureType: 'administrative.province',
-      stylers: [{ lightness: 0 }],
-    },
-    {
-      featureType: 'administrative.country',
-      elementType: 'geometry.stroke',
-      stylers: [{ lightness: 10 }],
-    },
-    {
-      featureType: 'administrative',
-      elementType: 'labels',
-      stylers: [{ visibility: 'simplified' }],
-    },
+    // {
+    //   featureType: 'water',
+    //   elementType: 'geometry.fill',
+    //   stylers: [{ color: '#282828' }],
+    // },
+    // {
+    //   featureType: 'landscape',
+    //   stylers: [{ color: '#393939' }],
+    // },
+    // {
+    //   featureType: 'road',
+    //   stylers: [
+    //     { visibility: 'simplified' },
+    //     { lightness: -32 },
+    //     // { "opacity": 0.2 },
+    //     { saturation: -9 },
+    //   ],
+    // },
+    // {
+    //   featureType: 'road.arterial',
+    //   stylers: [{ visibility: 'off' }],
+    // },
+    // {
+    //   featureType: 'road.highway',
+    //   elementType: 'geometry.fill',
+    //   stylers: [
+    //     { saturation: -80 },
+    //     { lightness: -30 },
+    //     { visibility: 'simplified' },
+    //     { weight: 0.5 },
+    //   ],
+    // },
+    // {
+    //   featureType: 'road.highway',
+    //   elementType: 'geometry.stroke',
+    //   stylers: [{ visibility: 'simplified' }],
+    // },
+    // {
+    //   featureType: 'road.highway',
+    //   elementType: 'labels',
+    //   stylers: [{ visibility: 'off' }],
+    // },
+    // {
+    //   featureType: 'road.local',
+    //   stylers: [{ visibility: 'off' }],
+    // },
+    // {
+    //   featureType: 'transit',
+    //   elementType: 'geometry',
+    //   stylers: [{ color: '#000000' }, { lightness: 19 }],
+    // },
+    // {
+    //   featureType: 'poi',
+    //   stylers: [{ visibility: 'off' }],
+    // },
+    // {
+    //   featureType: 'all',
+    //   elementType: 'labels.text.stroke',
+    //   stylers: [{ visibility: 'off' }, { color: '#000000' }, { lightness: 10 }],
+    // },
+    // {
+    //   featureType: 'all',
+    //   elementType: 'labels.text.fill',
+    //   stylers: [{ visibility: 'on' }, { saturation: -100 }, { lightness: 45 }],
+    // },
+    // {
+    //   featureType: 'all',
+    //   elementType: 'labels.icon',
+    //   stylers: [{ visibility: 'off' }],
+    // },
+    // {
+    //   featureType: 'transit',
+    //   elementType: 'geometry',
+    //   stylers: [{ color: '#000000' }, { lightness: 19 }],
+    // },
+    // {
+    //   featureType: 'administrative',
+    //   elementType: 'geometry.fill',
+    //   stylers: [{ visibility: 'off' }],
+    // },
+    // {
+    //   featureType: 'administrative.province',
+    //   stylers: [{ lightness: 0 }],
+    // },
+    // {
+    //   featureType: 'administrative.country',
+    //   elementType: 'geometry.stroke',
+    //   stylers: [{ lightness: 10 }],
+    // },
+    // {
+    //   featureType: 'administrative',
+    //   elementType: 'labels',
+    //   stylers: [{ visibility: 'simplified' }],
+    // },
   ];
 
   private MY_MAPTYPE_ID = 'kickasstrip_style';
