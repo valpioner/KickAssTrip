@@ -43,6 +43,10 @@ const tripSchema = mongoose.Schema({
   endDate: {
     type: Date,
   },
+  createdAt: {
+    type: Date,
+    default: Date.now,
+  },
 });
 
 module.exports = mongoose.model("Trip", tripSchema, "trips");
