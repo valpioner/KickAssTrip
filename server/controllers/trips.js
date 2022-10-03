@@ -65,14 +65,34 @@ exports.getTrip = asyncHandler(async (req, res, next) => {
 //   });
 // });
 
-// // @desc      Delete user
-// // @route     DELETE /api/v1/auth/users/:id
-// // @access    Private/Admin
-// exports.deleteUser = asyncHandler(async (req, res, next) => {
-//   await User.findByIdAndDelete(req.params.id);
+// @desc      Delete trip
+// @route     DELETE /api/v1/trips/:id
+// @access    Private/Admin
+exports.deleteTrip = asyncHandler(async (req, res, next) => {
+  const trip = await Trip.findById(req.params.id);
 
-//   res.status(200).json({
-//     success: true,
-//     data: {},
-//   });
-// });
+  if (!trip) {
+    return next(
+      new ErrorResponse(`No trip with the id of ${req.params.id}`),
+      404
+    );
+  }
+
+  // Make sure trip belongs to user, and that user is not admin
+  if (trip.user.toString() !== req.user.id && req.user.role !== "admin") {
+    return next(
+      new ErrorResponse(
+        `Not authorized to delete trip with the id of ${req.params.id}`,
+        401
+      )
+    );
+  }
+
+  //   await Trip.findByIdAndDelete(req.params.id);
+  await trip.remove();
+
+  res.status(200).json({
+    success: true,
+    data: {},
+  });
+});

@@ -4,7 +4,7 @@ const {
   getTrip,
   //   createBootcamp,
   //   updateBootcamp,
-  //   deleteBootcamp,
+  deleteTrip,
   //   getBootcampsInRadius,
   //   bootcampPhotoUpload
 } = require("../controllers/trips");
@@ -25,8 +25,11 @@ router.route("/").get(
 );
 //   .post(protect, authorize('user', 'admin'), addReview);
 
-router.route("/:id").get(getTrip);
-//   .put(protect, authorize("publisher", "admin"), updateBootcamp)
-//   .delete(protect, authorize("publisher", "admin"), deleteBootcamp);
+router
+  .route("/:id")
+  .get(getTrip)
+  //   .put(protect, authorize("publisher", "admin"), updateBootcamp)
+  .delete(protect, deleteTrip);
+// .delete(protect, authorize("publisher", "admin"), deleteTrip);
 
 module.exports = router;
